@@ -30,6 +30,6 @@ func scanFiles(dir string) {
 }
 
 func main() {
-	directory := "C:/Users/username/Downloads/"
+	directory := "C:\\Users\\username\\Downloads\\"
 	scanFiles(directory)
 }
