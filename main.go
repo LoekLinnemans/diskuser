@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -16,20 +17,35 @@ func init() {
 
 	writer := io.MultiWriter(os.Stdout, logFile)
 	log.SetOutput(writer)
+	defer logFile.Close()
 }
 
-func scanFiles(dir string) {
+func ScanFiles(dir string) {
 	filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			log.Println("error finding directory")
+			log.Println("error finding directory or file: ", err)
 			return err
 		}
-		log.Printf("Path: %v, Name: %v, Size: %v bytes\n", path, info.Name(), info.Size())
+		WriteToFile(fmt.Sprintf("Path: %v, Name: %v, Size: %v bytes\n", path, info.Name(), info.Size()))
 		return nil
 	})
 }
 
+func WriteToFile(dir string) {
+	file, err := os.OpenFile("result.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Println("Error creating file:", err)
+		return
+	}
+	_, err = file.WriteString(dir)
+	if err != nil {
+		log.Println("Error writing to file:", err)
+		return
+	}
+	defer file.Close()
+}
+
 func main() {
-	directory := "C:\\Users\\username\\Downloads\\"
-	scanFiles(directory)
+	directory := "C:\\Users\\loek\\OneDrive\\Documenten\\World Machine Documents"
+	ScanFiles(directory)
 }
