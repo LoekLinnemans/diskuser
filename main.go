@@ -17,13 +17,13 @@ func init() {
 
 	writer := io.MultiWriter(os.Stdout, logFile)
 	log.SetOutput(writer)
-	defer logFile.Close()
+
 }
 
 func ScanFiles(dir string) {
 	filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			log.Println("error finding directory or file: ", err)
+			log.Println("Error finding directory or file: ", err)
 			return err
 		}
 		WriteToFile(fmt.Sprintf("Path: %v, Name: %v, Size: %v bytes\n", path, info.Name(), info.Size()))
