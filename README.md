@@ -1,6 +1,6 @@
 # diskuser
 
-result will be put in the resulkt.txt file.
+result will be put in the result.txt file.
 
 
 os exit status
