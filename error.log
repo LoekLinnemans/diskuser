@@ -35,3 +35,4 @@
 2024/03/04 13:20:51 Error truncating file: truncate result.txt: Access is denied.
 2024/03/04 13:20:51 Error truncating file: truncate result.txt: Access is denied.
 2024/03/04 13:20:51 Error truncating file: truncate result.txt: Access is denied.
+2024/03/11 09:11:56 Error finding directory or file:  open C:\$Recycle.Bin\S-1-5-18: Access is denied.
